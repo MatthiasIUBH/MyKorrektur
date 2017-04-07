@@ -11,7 +11,18 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
+        include('model.php'); // call db.class.php
+        $bdd = new db(); // create a new object, class db()
+        
+        $Users = $bdd->getAll('SELECT ID, vorname, nachname FROM testtabelle'); // select ALL from users
+		
+        $nbrUsers = count($Users); // return the number of lines
+
+        echo $nbrUsers.' users in the database<br />';
+
+        foreach($Users as $user) { // display the list
+        echo $user['ID'].' - '.$user['vorname'].' - '.$user['nachname'].'<br>';	
+        }
         ?>
     </body>
 </html>
