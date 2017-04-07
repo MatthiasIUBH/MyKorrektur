@@ -11,16 +11,16 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        include('model.php'); // call db.class.php
-        $bdd = new db(); // create a new object, class db()
+        include('model.php'); // Model-Klasse für DB Operationen aufrufen
+        $bdd = new db(); // Erstelle ein neues Object, Klasse db()
         
-        $Users = $bdd->getAll('SELECT ID, vorname, nachname FROM testtabelle'); // select ALL from users
+        $Users = $bdd->getAll('SELECT ID, vorname, nachname FROM testtabelle'); // SQL Query, 
 		
-        $nbrUsers = count($Users); // return the number of lines
+        $nbrUsers = count($Users); // Anzahl der Datensätze zurück geben
 
-        echo $nbrUsers.' users in the database<br />';
+        echo $nbrUsers.' Datensätze<br />';
 
-        foreach($Users as $user) { // display the list
+        foreach($Users as $user) { // Alle Datensätze anzeigen
         echo $user['ID'].' - '.$user['vorname'].' - '.$user['nachname'].'<br>';	
         }
         ?>
