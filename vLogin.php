@@ -36,6 +36,7 @@
         <!-- Navigation -->
         <?php
         include 'vNav.php';
+        include 'clogin.php';
         ?>
 
         <!-- Page Content -->
@@ -45,7 +46,7 @@
                 <div class="col-lg-12 text-center">
                     
 
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="?login=1" method="post">
                         <fieldset>
 
                             <!-- Form Name -->
