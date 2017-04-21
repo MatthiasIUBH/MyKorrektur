@@ -1,6 +1,5 @@
 <?php
 
-
 if(isset($_GET['login'])) {
     
     session_start();
@@ -15,18 +14,21 @@ if(isset($_GET['login'])) {
 
 
      //Überprüfung des Passworts
-    if (count($user) > 0 && $passwort == $user['password']) {
-        $_SESSION['userid'] = $user['vorname'];
-        
+    if (count($user) > 0 && $passwort == $user['password'] ) {        
         if ($user['rolle'] == "dozent") {
+            $_SESSION['userid'] = $user['vorname'];
+            $_SESSION['email'] = $user['email'];
             header("location: vKorrekturOverview.php");
         }
         else {
+            $_SESSION['userid'] = $user['vorname'];
+            $_SESSION['email'] = $user['email'];
             header("location: vKorrektur.php");
         }
      } 
      else {
-        print( "E-Mail oder Passwort war ungültig<br>");
+        echo '<div class="alert alert-success alert-dismissable">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>E-Mail oder Passwort war ungültig</div>';
      }
 }
 ?>

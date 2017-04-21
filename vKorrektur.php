@@ -36,16 +36,7 @@
         <!-- Navigation -->
         <?php
         include 'vNav.php';
-        
-        session_start();
-        if(!isset($_SESSION['userid'])) {
-            die('Bitte zuerst <a href="login.php">einloggen</a>');
-        }
-
-        //Abfrage der Nutzer ID vom Login
-        $userid = $_SESSION['userid'];
-
-        echo "Hallo User: ".$userid;
+        include 'cKorrekturSessionhandler.php';
         ?>
 
         <!-- Page Content -->
@@ -65,7 +56,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">E-Mail</label>  
                                 <div class="col-md-4">
-                                    <input id="textinput" name="textinput" type="text" placeholder="max.muster@iubh-fernstudium.de" class="form-control input-md" required="">
+                                    <input id="textinput" name="textinput" type="text" value="<?php echo $_SESSION['email'];?>" class="form-control input-md" required="" disabled>
                                 </div>
                             </div>
 
@@ -114,7 +105,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="submit"></label>
                                 <div class="col-md-4">
-                                    <button id="submit" name="submit" class="btn btn-primary">Submit</button>
+                                    <button id="submit" name="submit" class="btn btn-primary">Absenden</button>
                                 </div>
                         </fieldset>
                     </form>
