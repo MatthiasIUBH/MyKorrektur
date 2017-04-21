@@ -37,6 +37,7 @@
         <?php
         include 'vNav.php';
         include 'cKorrekturSessionhandler.php';
+        include 'cKorrekturSubmit.php';
         ?>
 
         <!-- Page Content -->
@@ -64,7 +65,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="type">Art der Korrektur</label>
                                 <div class="col-md-4">
-                                    <select id="type" name="type" class="form-control">
+                                    <select id="type" name="type" class="form-control" required="">
                                         <option value="Fehler">Fehler</option>
                                         <option value="Verbesserung">Verbesserung</option>
                                     </select>
@@ -75,7 +76,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="module">Modul</label>
                                 <div class="col-md-4">
-                                    <select id="module" name="module" class="form-control">
+                                    <select id="module" name="module" class="form-control" required=""> 
                                         <option value="ISEF01">ISEF01</option>
                                         <option value="BKLR02">BKLR02</option>
                                     </select>
@@ -86,7 +87,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="material">Material</label>
                                 <div class="col-md-4">
-                                    <select id="material" name="material" class="form-control">
+                                    <select id="material" name="material" class="form-control" required="">
                                         <option value="Studienskript">Studienskript</option>
                                         <option value="Vodcast">Vodcast</option>
                                         <option value="Clix">Clix</option>
@@ -98,7 +99,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="description">Beschreibung</label>
                                 <div class="col-md-4">                     
-                                    <textarea class="form-control" id="description" name="description">Bitte Beschreiben Sie den Fehler bzw. den Verbesserungsvorschlag</textarea>
+                                    <textarea class="form-control" id="description" name="description" placeholder="Bitte Beschreiben Sie den Fehler bzw. den Verbesserungsvorschlag" required=""></textarea>
                                 </div>
                             </div>
                             <!-- Button -->
