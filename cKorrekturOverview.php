@@ -1,6 +1,8 @@
 <?php
   include('model.php'); // Model-Klasse für DB Operationen aufrufen
   $GetKorrekturen = new db(); // Erstelle ein neues Object, Klasse db()
+  
+  //Alle Korrekturen des aktiven Dozenten auslesen
   $korrekturen = $GetKorrekturen->GetAll(""
           . "select KOR.ID,KOR.description,STA.status,MAT.material, MODU.module,TYP.type,USR.email "
           . "from korrektur KOR "
@@ -11,6 +13,8 @@
           . "inner join status STA on STA.ID = KOR.statusID "
           . "where KOR.userDozentID = ".$_SESSION['userid']."");
   
+  
+  //Wenn der Dozenz Korrekturen hat, diese anzeigen
   if (count($korrekturen)>0) {
       echo '<table class="table table-bordered">
                     <thead>
@@ -24,6 +28,8 @@
                        <th>Administration</th>
                      </tr>
                    </thead>';
+      
+      //Alle Daten der DB Abfrage in eine Tabelle schreiben
         foreach ($korrekturen as $value) 
         {
 
@@ -43,6 +49,8 @@
         }
         echo '</table>';
   }
+  
+  //Wenn Dozent keine Korrekturen hat Meldung anzeigen
   else {
     echo '<br><div class="alert alert-success alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Keine Korrekturen zur Bearbeitung vorhanden!</div>';

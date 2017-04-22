@@ -14,9 +14,8 @@ if(isset($_GET['submit'])) {
         $email = $_SESSION['email'];
         $userid = $_SESSION['userid'];
         
+        //per SQL rausfinden welcher Dozent für das jeweilige Modul zuständig ist
         $dozent = $GetDozentId->getOne("Select userID from module where ID = $module");
-
-        
 
         //Daten in DB schreiben
         $insert = $KorrekturSubmit->execute("INSERT INTO korrektur  (userStudentID, moduleID, typeID, description, materialID, userDozentID, statusID)
