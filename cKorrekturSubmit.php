@@ -3,7 +3,7 @@
 if(isset($_GET['submit'])) {
 
         include('model.php'); // Model-Klasse für DB Operationen aufrufen
-        $bdd = new db(); // Erstelle ein neues Object, Klasse db()
+        $KorrekturSubmit = new db(); // Erstelle ein neues Object, Klasse db()
         
         //Variablen belegen
         $material = $_GET['material'];
@@ -13,15 +13,12 @@ if(isset($_GET['submit'])) {
         $email = $_SESSION['email'];
 
         //Daten in DB schreiben
-        $user = $bdd->execute("INSERT INTO korrektur  (email, module, type, description, material)
+        $user = $KorrekturSubmit->execute("INSERT INTO korrektur  (email, module, type, description, material)
                                                   VALUES('$email', '$module', '$type', '$description', '$material');");
-         
-        //Bootstrap spielereien
-        echo '<br><div class="alert alert-success alert-dismissable">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Insert erfolgreich!</div>';
         
-        //header("location: vKorrektur.php");
-        //exit;
+        //Sessionflag wird gesetzt und ein Redirect wird ausgeführt --> auf der Seite wird dann auch der erfolgreiche DB insert angezeigt
+        $_SESSION['submitflag'] = true;
+        header("location: vKorrektur.php");
         }
         
 ?>
