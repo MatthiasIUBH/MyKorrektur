@@ -66,8 +66,16 @@
                                 <label class="col-md-4 control-label" for="type">Art der Korrektur</label>
                                 <div class="col-md-4">
                                     <select id="type" name="type" class="form-control" required="">
-                                        <option value="Fehler">Fehler</option>
-                                        <option value="Verbesserung">Verbesserung</option>
+                                        <option value="" disabled selected>Bitte auswählen</option>
+                                        <?php
+                                            include('model.php'); // Model-Klasse für DB Operationen aufrufen
+                                            $GetType = new db(); // Erstelle ein neues Object, Klasse db()
+                                            $type = $GetType->GetAll("SELECT * FROM type");
+                                            foreach ($type as $value) {
+                                                echo '<option value="'.$value['ID'].'">'.$value['type'].'</option>';
+                                                
+                                            }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -77,8 +85,16 @@
                                 <label class="col-md-4 control-label" for="module">Modul</label>
                                 <div class="col-md-4">
                                     <select id="module" name="module" class="form-control" required=""> 
-                                        <option value="ISEF01">ISEF01</option>
-                                        <option value="BKLR02">BKLR02</option>
+                                        <option value="" disabled selected>Bitte auswählen</option>
+                                        <?php
+                                            //include('model.php'); // Model-Klasse für DB Operationen aufrufen
+                                            $GetModule = new db(); // Erstelle ein neues Object, Klasse db()
+                                            $module = $GetModule->GetAll("SELECT * FROM module");
+                                            foreach ($module as $value) {
+                                                echo '<option value="'.$value['ID'].'">'.$value['module'].'</option>';
+                                                
+                                            }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
@@ -88,9 +104,16 @@
                                 <label class="col-md-4 control-label" for="material">Material</label>
                                 <div class="col-md-4">
                                     <select id="material" name="material" class="form-control" required="">
-                                        <option value="Studienskript">Studienskript</option>
-                                        <option value="Vodcast">Vodcast</option>
-                                        <option value="Clix">Clix</option>
+                                        <option value="" disabled selected>Bitte auswählen</option>
+                                        <?php
+                                            //include('model.php'); // Model-Klasse für DB Operationen aufrufen
+                                            $GetMaterial = new db(); // Erstelle ein neues Object, Klasse db()
+                                            $material = $GetMaterial->GetAll("SELECT * FROM material");
+                                            foreach ($material as $value) {
+                                                echo '<option value="'.$value['ID'].'">'.$value['material'].'</option>';
+                                                
+                                            }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
