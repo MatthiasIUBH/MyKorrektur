@@ -10,19 +10,20 @@ if(isset($_GET['login'])) {
     include('model.php'); // Model-Klasse für DB Operationen aufrufen
     $bdd = new db(); // Erstelle ein neues Object, Klasse db()
 
-    $user = $bdd->getOne("SELECT ID, vorname, email, password, rolle FROM testtabelle WHERE email = '$email'");
+    $user = $bdd->getOne("SELECT ID, vorname, email, password, rolle FROM user WHERE email = '$email'");
 
 
      //Überprüfung des Passworts
-    if (count($user) > 0 && $passwort == $user['password'] ) {        
+    if (count($user) > 0 && $passwort == $user['password'] ) { 
+        //SESSION Varaiblen setzen + Redirect zu verschiedenen Seiten
+        $_SESSION['userid'] = $user['vorname'];
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['loginflag'] = true;
+            
         if ($user['rolle'] == "dozent") {
-            $_SESSION['userid'] = $user['vorname'];
-            $_SESSION['email'] = $user['email'];
             header("location: vKorrekturOverview.php");
         }
         else {
-            $_SESSION['userid'] = $user['vorname'];
-            $_SESSION['email'] = $user['email'];
             header("location: vKorrektur.php");
         }
      } 
