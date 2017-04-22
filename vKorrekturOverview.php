@@ -41,33 +41,13 @@
 
         <!-- Page Content -->
         <div class="container">
-  <h2>Korrekturübersicht</h2>         
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Ticketnr</th>
-        <th>Modul</th>
-        <th>Art der Korrektur</th>
-        <th>Material</th>
-        <th>Kurzbeschreibung</th>
-        <th>Status</th>
-        <th>Administration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- statischer Beispielinhalt -->
-        <tr>
-        <td>0001</td>
-        <td>ISEF01</td>
-        <td>Fehler</td>
-        <td>Studienskript</td>
-        <td>Rechenfehler auf Seite 23</td>
-        <td>In Bearbeitung</td>
-        <td>Bearbeiten</td>
-      </tr>
-      
-    </tbody>
-  </table>
+  <h2>Korrekturübersicht</h2>
+          
+  <?php
+    include 'CKorrekturOverview.php';
+  ?>
+  
+
 </div>
         <!-- /.container -->
 
