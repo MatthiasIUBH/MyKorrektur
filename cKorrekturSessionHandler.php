@@ -6,13 +6,13 @@
         }
         else    {
             //Abfrage der Nutzer ID vom Login
-            $userid = $_SESSION['userid'];
+            $vorname = $_SESSION['vorname'];
 
             //Wenn Login erfolgreich --> zeige entsprechende Bootstrap Nachricht an
             if(isset($_SESSION['loginflag']) && $_SESSION['loginflag'] == true){
                 echo '                <div class="alert alert-success alert-dismissable">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        Login erfolgreich! Hallo '.$userid.'
+                        Login erfolgreich! Hallo '.$vorname.'
                 </div>';
                 $_SESSION['loginflag'] = false;
             }
@@ -28,7 +28,7 @@
             echo '
                 <!-- Button -->
                 <form class="form-horizontal" action="?logout=1" method="post">
-                        <button id="logout" name="logout" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-log-out"></span>Logout '.$userid.'</button>
+                        <button id="logout" name="logout" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-log-out"></span>Logout '.$vorname.'</button>
                 </form>';
         }
 
