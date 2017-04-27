@@ -1,5 +1,10 @@
 <?php
-  include('model.php'); // Model-Klasse für DB Operationen aufrufen
+  require_once('model.php'); // Model-Klasse für DB Operationen aufrufen
+  
+  
+
+
+  
   $GetKorrekturen = new db(); // Erstelle ein neues Object, Klasse db()
   
   //Alle Korrekturen des aktiven Dozenten auslesen
@@ -34,22 +39,23 @@
         {
 
             echo '  
-                   <tbody>
-                       <tr>
-                       <td>'.$value['ID'].'</td>
-                       <td>'.$value['module'].'</td>
-                       <td>'.$value['type'].'</td>
-                       <td>'.$value['material'].'</td>
-                       <td>'.$value['description'].'</td>
-                       <td>'.$value['status'].'</td>
-                       <td><a>Bearbeiten</a></td>
+                    <tbody>
+                        <tr>
+                        <td>'.$value['ID'].'</td>
+                        <td>'.$value['module'].'</td>
+                        <td>'.$value['type'].'</td>
+                        <td>'.$value['material'].'</td>
+                        <td>'.$value['description'].'</td>
+                        <td>'.$value['status'].'</td>
+                        <td><a href="vKorrekturDetail.php?korrekturid='.$value['ID'].'&status='.$value['status'].'" target="_self"">Bearbeiten</a>
+                        </td>
                      </tr>
                    </tbody>
                  ';
         }
         echo '</table>';
   }
-  
+
   //Wenn Dozent keine Korrekturen hat Meldung anzeigen
   else {
     echo '<br><div class="alert alert-success alert-dismissable">
