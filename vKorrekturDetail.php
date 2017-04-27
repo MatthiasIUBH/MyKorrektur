@@ -36,71 +36,62 @@
         <!-- Navigation -->
         <?php
         include 'vNav.php';
+        include 'cKorrekturSessionhandler.php';
+        include 'cKorrekturDetail.php';
+
+
         ?>
 
         <!-- Page Content -->
         <div class="container">
-            <h2>Korrekturübersicht</h2>         
+            <h2 class="text-center">Korrekturbearbeitung</h2>         
             <table class="table table-bordered">
                 <tbody>
-                    <!-- statischer Beispielinhalt -->
-                    <tr>
-                        <td>Ticketnr</td>
-                        <td>0001 <!--- PHP sollte hier Daten holen ---></td>
-                    </tr>
-                    <tr>
-                        <td>Status</td>
-                        <td>Neu <!--- PHP sollte hier Daten holen ---> </td>
-                    </tr>
-                    <tr>
-                        <td>E-Mail:</td>
-                        <td>max.muster@iubh-fernstudium.de <!--- PHP sollte hier Daten holen ---></td>
-                    </tr>
-                    <tr>
-                        <td>Art d. Korrektur</td>
-                        <td>Fehler <!--- PHP sollte hier Daten holen ---></td>
-                    </tr>
-                    <tr>
-                        <td>Material</td>
-                        <td>Studienskript <!--- PHP sollte hier Daten holen ---></td>
-                    </tr>
-                    <tr>
-                        <td>Modul</td>
-                        <td>ISEF01 <!--- PHP sollte hier Daten holen ---></td>
-
-                    </tr>
-                    <tr>
-                        <td>Beschreibung</td>
-                        <td>Auf Seite 32, Abschnitt 3 fehlt eine Grafik <!--- PHP sollte hier Daten holen ---></td>
-                    </tr>
+                    <!-- statischer Beispielinhalt -->       
                 </tbody>
             </table>
 
             <form class="form-horizontal">
                 <fieldset>
+                   
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="status">Status</label>
+                        <div class="col-md-4">
+                            <select id="status" name="status" class="form-control" required="">
+                                <option value="" disabled selected>Bitte auswählen</option>
+                                <?php
+                                    require_once('model.php'); // Model-Klasse für DB Operationen aufrufen
+                                    $GetStatus = new db(); // Erstelle ein neues Object, Klasse db()
+                                    $AllStatus = $GetStatus->GetAll("SELECT * FROM status");
+                                    //unset($GetStatus);;
+                                    foreach ($AllStatus as $value) {
+                                        echo '<option value="'.$value['ID'].'">'.$value['status'].'</option>';
+
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
 
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="reason">Begründung</label>  
                         <div class="col-md-4">
-                            <input id="reason" name="reason" type="text" placeholder="" class="form-control input-md">
+                  <textarea class="form-control" rows="5" id="reason" name="reason" required=""></textarea>
 
                         </div>
                     </div>
-
-                    <!-- Button (Double) -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="button1id"></label>
-                        <div class="col-md-8">
-                            <button id="button1id" name="button1id" class="btn btn-success">Annehmen</button>
-                            <button id="button2id" name="button2id" class="btn btn-danger">Ablehnen</button>
-                        </div>
+                    
+                    <!-- Button -->
+                    <div class="form-group text-center">
+                        <label class="col-md-4 control-label" for="save"></label>  
+                        <div class="col-md-4 ">
+                            <button id="save" name="save" class="btn btn-primary">Speichern</button>
                     </div>
-
                 </fieldset>
             </form>
 
-
+            <?php tabelle(); ?>
 
         </div>
         <!-- /.container -->
