@@ -21,6 +21,7 @@ if(isset($_GET['login'])) {
         $_SESSION['userid'] = $user['ID'];
         $_SESSION['vorname'] = $user['vorname'];
         $_SESSION['email'] = $user['email'];
+        $_SESSION['rolle'] = $user['rolle'];
         $_SESSION['loginflag'] = true;
             
         if ($user['rolle'] == "Dozent") {
