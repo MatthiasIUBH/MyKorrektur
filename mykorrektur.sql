@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 22. Apr 2017 um 23:26
+-- Erstellungszeit: 27. Apr 2017 um 19:51
 -- Server-Version: 10.1.19-MariaDB
 -- PHP-Version: 5.6.28
 
@@ -19,6 +19,40 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `mykorrektur`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `bearbeitung`
+--
+
+CREATE TABLE `bearbeitung` (
+  `ID` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `text` varchar(10000) NOT NULL,
+  `korrekturID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `bearbeitung`
+--
+
+INSERT INTO `bearbeitung` (`ID`, `date`, `text`, `korrekturID`) VALUES
+(11, '2017-04-26 20:45:14', 'das ist ein test', 23),
+(12, '2017-04-26 20:52:36', 'asdasd', 26),
+(13, '2017-04-26 20:52:48', 'das ist 30', 30),
+(14, '2017-04-26 20:54:23', 'asdasd', 27),
+(15, '2017-04-26 21:03:20', 'dasdsad', 26),
+(16, '2017-04-26 21:03:39', 'dfsdf', 25),
+(17, '2017-04-26 21:08:49', 'asdad', 25),
+(18, '2017-04-26 21:13:37', 'Status geändert: Unbearbeitet --> 3', 27),
+(19, '2017-04-26 21:13:37', 'dddd', 27),
+(20, '2017-04-26 21:15:42', 'Status geändert: Unbearbeitet --> 4', 28),
+(21, '2017-04-26 21:15:43', 'adasd', 28),
+(22, '2017-04-27 18:45:27', 'Status geändert: Unbearbeitet --> 4', 24),
+(23, '2017-04-27 18:45:27', 'fsdf', 24),
+(24, '2017-04-27 19:50:31', 'Status geändert: in Arbeit &rarr; 5', 25),
+(25, '2017-04-27 19:50:31', 'sdfsdf', 25);
 
 -- --------------------------------------------------------
 
@@ -42,12 +76,14 @@ CREATE TABLE `korrektur` (
 --
 
 INSERT INTO `korrektur` (`ID`, `moduleID`, `typeID`, `description`, `materialID`, `userStudentID`, `statusID`, `userDozentID`) VALUES
-(24, '1', '1', 'text', '1', 2, 1, 1),
-(25, '1', '1', 'sdfsdfsdf', '1', 2, 1, 1),
+(24, '1', '1', 'text', '1', 2, 4, 1),
+(25, '1', '1', 'sdfsdfsdf', '1', 2, 5, 1),
 (26, '2', '2', 'sdfdsfsdf', '2', 2, 1, 1),
-(27, '1', '1', 'asdasd', '2', 2, 1, 1),
-(28, '1', '1', 'sdfsdf', '1', 2, 1, 1),
-(29, '1', '1', 'dfsf', '1', 2, 1, 1);
+(27, '1', '1', 'asdasd', '2', 2, 3, 1),
+(28, '1', '1', 'sdfsdf', '1', 2, 4, 1),
+(29, '1', '1', 'dfsf', '1', 2, 1, 1),
+(30, '1', '1', 'das ist ein test', '2', 2, 1, 1),
+(31, '2', '1', 'test für linda', '4', 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -114,7 +150,9 @@ INSERT INTO `status` (`ID`, `status`) VALUES
 (2, 'in Arbeit'),
 (3, 'Abgelehnt'),
 (4, 'Wartend'),
-(5, 'Geschlossen');
+(5, 'Geschlossen'),
+(6, 'Zwischeninfo'),
+(7, 'Archiviert');
 
 -- --------------------------------------------------------
 
@@ -185,6 +223,12 @@ INSERT INTO `userrolle` (`ID`, `rolle`) VALUES
 --
 
 --
+-- Indizes für die Tabelle `bearbeitung`
+--
+ALTER TABLE `bearbeitung`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indizes für die Tabelle `korrektur`
 --
 ALTER TABLE `korrektur`
@@ -231,10 +275,15 @@ ALTER TABLE `userrolle`
 --
 
 --
+-- AUTO_INCREMENT für Tabelle `bearbeitung`
+--
+ALTER TABLE `bearbeitung`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
 -- AUTO_INCREMENT für Tabelle `korrektur`
 --
 ALTER TABLE `korrektur`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT für Tabelle `material`
 --
@@ -249,7 +298,7 @@ ALTER TABLE `module`
 -- AUTO_INCREMENT für Tabelle `status`
 --
 ALTER TABLE `status`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT für Tabelle `type`
 --
