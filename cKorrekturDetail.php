@@ -8,7 +8,12 @@
         $_SESSION['status'] = $_GET['statusid'];
         header("location: vKorrekturDetail.php");
     }
-
+    //Wenn weder eine Session noch das GET Flag gesetzt wurden, Weiterleitung zur Übersicht
+    //Sicherheitsfunktion, da die Seite nicht arbeiten kann wenn kein Parameter übergeben wurde
+    if (!$_SESSION['korrekturid'] && !isset($_GET['save']) ) {
+        header("location: vKorrekturOverview.php");
+    }
+    
     //Wenn der Speicherbutton in der Detailkorrektur geklickt wurde!
     if(isset($_GET['save'])) {
         $reason = $_GET['reason'];
