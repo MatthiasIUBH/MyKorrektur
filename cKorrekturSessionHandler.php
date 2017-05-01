@@ -4,7 +4,10 @@
         if(!isset($_SESSION['userid'])) {
             die('Bitte zuerst <a href="vLogin.php">einloggen</a>');
         }
-        else    {
+        if ($_SESSION['rolle'] == "Student" && basename($_SERVER['PHP_SELF']) != "vKorrektur.php") {
+            header("location: vKorrektur.php");
+        }
+        else {
             //Abfrage der Nutzer ID vom Login
             $vorname = $_SESSION['vorname'];
 
@@ -28,7 +31,7 @@
             echo '
                 <!-- Button -->
                 <form class="form-horizontal" action="?logout=1" method="post">
-                        <button id="logout" name="logout" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-log-out"></span>Logout '.$vorname.'</button>
+                        <button id="logout" name="logout" class="btn btn-default btn-sm pull-right"><span class="glyphicon glyphicon-log-out"></span> Logout '.$vorname.'</button>
                 </form>';
         }
 
