@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_GET['submit'])) {
+if(isset($_GET['submit']) && $_SESSION['rolle'] == 'Student') {
 
         include('model.php'); // Model-Klasse für DB Operationen aufrufen
         $KorrekturSubmit = new db(); // Erstelle ein neues Object, Klasse db()
