@@ -2,14 +2,11 @@
   require_once('model.php'); // Model-Klasse für DB Operationen aufrufen
   
   
-
-
-  
   $GetKorrekturen = new db(); // Erstelle ein neues Object, Klasse db()
   
   //Alle Korrekturen des aktiven Dozenten auslesen
   $korrekturen = $GetKorrekturen->GetAll(""
-          . "select KOR.ID,KOR.description,STA.status,MAT.material, MODU.module,TYP.type,USR.email "
+          . "select KOR.ID,KOR.description,STA.ID as 'statusid',STA.status,MAT.material, MODU.module,TYP.type,USR.email "
           . "from korrektur KOR "
           . "inner join material MAT on MAT.ID = KOR.materialID "
           . "inner join module MODU on MODU.ID = KOR.moduleID "
@@ -19,7 +16,7 @@
           . "where KOR.userDozentID = ".$_SESSION['userid']."");
   
   
-  //Wenn der Dozenz Korrekturen hat, diese anzeigen
+  //Wenn der Dozent Korrekturen hat, diese anzeigen
   if (count($korrekturen)>0) {
       echo '<table class="table table-bordered">
                     <thead>
@@ -47,7 +44,7 @@
                         <td>'.$value['material'].'</td>
                         <td>'.$value['description'].'</td>
                         <td>'.$value['status'].'</td>
-                        <td><a href="vKorrekturDetail.php?korrekturid='.$value['ID'].'&status='.$value['status'].'" target="_self"">Bearbeiten</a>
+                        <td><a href="vKorrekturDetail.php?korrekturid='.$value['ID'].'&statusid='.$value['statusid'].'" target="_self"">Bearbeiten</a>
                         </td>
                      </tr>
                    </tbody>
