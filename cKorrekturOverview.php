@@ -10,7 +10,7 @@ unset($_SESSION['status']);
 $GetKorrekturen = new db(); // Erstelle ein neues Object, Klasse db()
 //Alle Korrekturen des aktiven Dozenten auslesen
 $korrekturen = $GetKorrekturen->GetAll(""
-        . "select KOR.ID,KOR.description,STA.ID as 'statusid',STA.status,MAT.material, MODU.module,TYP.type,USR.email "
+        . "select KOR.ID,KOR.description,STA.ID as 'statusid',STA.final,STA.status,MAT.material, MODU.module,TYP.type,USR.email "
         . "from korrektur KOR "
         . "inner join material MAT on MAT.ID = KOR.materialID "
         . "inner join module MODU on MODU.ID = KOR.moduleID "
@@ -25,7 +25,7 @@ if (count($korrekturen) > 0) {
     echo '<table class="table table-bordered">
                     <thead>
                      <tr>
-                       <th>Korrekturnr.</th>
+                       <th>Korrektur ID</th>
                        <th>Modul</th>
                        <th>Art der Korrektur</th>
                        <th>Material</th>
@@ -47,8 +47,18 @@ if (count($korrekturen) > 0) {
                         <td>' . $value['material'] . '</td>
                         <td>' . $value['description'] . '</td>
                         <td>' . $value['status'] . '</td>
-                        <td><a href="vKorrekturDetail.php?korrekturid=' . $value['ID'] . '&statusid=' . $value['statusid'] . '" target="_self"">Bearbeiten</a>
-                        </td>
+                        <td>';
+                        
+                        //Wenn der Status Final ist: keine Anzeige eines Buttons
+                        //Wenn der Status NICHT Final ist: Anzeuge Button zur Detailansicht!
+                        if($value['final'] == 1) {
+                            echo '';
+                        }
+                        else {
+                            echo '<a href="vKorrekturDetail.php?korrekturid=' . $value['ID'] . '&statusid=' . $value['statusid'] . '" target="_self"">Bearbeiten</a>';
+                        }
+        
+        echo '          </td>
                      </tr>
                    </tbody>
                  ';
