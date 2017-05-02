@@ -62,7 +62,7 @@
                                 <?php
                                     require_once('model.php'); // Model-Klasse für DB Operationen aufrufen
                                     $GetStatus = new db(); // Erstelle ein neues Object, Klasse db()
-                                    $AllStatus = $GetStatus->GetAll("SELECT * FROM status");
+                                    $AllStatus = $GetStatus->GetAll("SELECT * FROM status where selectable = 1");
                                     //unset($GetStatus);;
                                     foreach ($AllStatus as $value) {
                                         echo '<option value="'.$value['ID'].'">'.$value['status'].'</option>';
