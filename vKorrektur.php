@@ -91,7 +91,7 @@
                                             $GetModule = new db(); // Erstelle ein neues Object, Klasse db()
                                             $module = $GetModule->GetAll("SELECT * FROM module");
                                             foreach ($module as $value) {
-                                                echo '<option value="'.$value['ID'].'">'.$value['module'].'</option>';
+                                                echo '<option value="'.$value['ID'].'">'.$value['module'].' - '.$value['description'].'</option>';
                                                 
                                             }
                                         ?>
