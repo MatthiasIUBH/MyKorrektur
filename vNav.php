@@ -14,22 +14,16 @@ and open the template in the editor.
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="vKorrektur.php">MyKorrektur</a>
+                <a class="navbar-brand" href="vLogin.php">MyKorrektur</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="vLogin.php">Login</a>
-                    </li>
-                    <li>
                         <a href="vKorrektur.php">Korrektureingabe</a>
                     </li>
                     <li>
                         <a href="vKorrekturOverview.php">Korrekturübersicht</a>
-                    </li>
-                    <li>
-                        <a href="vKorrekturDetail.php">KorrekturDetail</a>
                     </li>
                     
                 </ul>
