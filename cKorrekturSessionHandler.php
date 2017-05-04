@@ -1,5 +1,4 @@
 <?php
-
         session_start();
         if(!isset($_SESSION['userid'])) {
             die('Bitte zuerst <a href="vLogin.php">einloggen</a>');
@@ -23,7 +22,7 @@
             if(isset($_SESSION['submitflag']) && $_SESSION['submitflag'] == true){
                 //Bootstrap spielereien
                 echo '<br><div class="alert alert-success alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Insert erfolgreich!</div>';
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Korrekturvorschlag wurde erfolgreich angelegt!</div>';
                 $_SESSION['submitflag'] = false;
             }
             

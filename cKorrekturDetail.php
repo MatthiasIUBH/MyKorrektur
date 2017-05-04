@@ -92,7 +92,7 @@
           //Wenn Dozent keine Korrekturen hat Meldung anzeigen
           else {
             echo '<br><div class="alert alert-success alert-dismissable">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Keine Korrekturen zur Bearbeitung vorhanden!</div>';
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>Bisher keine Einträge vorhanden!</div>';
           }
     }
 }
