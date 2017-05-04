@@ -17,19 +17,33 @@
     //Wenn der Speicherbutton in der Detailkorrektur geklickt wurde!
     if(isset($_GET['save'])) {
         $reason = $_GET['reason'];
-        $NewStatus = $_GET['status'];
-        $OldStatus = $_SESSION['status'];
+        $NewStatusID = $_GET['status'];
+        $OldStatusID = $_SESSION['status'];
         $korrekturid = $_SESSION['korrekturid'];
         $statustext = "";
         
         //Wenn der Status explizit geändert wurde wird dieser in der Korrektur geändert
         //Außerdem gibt es eine Mitteltung
-        if ($NewStatus != $_SESSION['status']) {
-            $statustext .= "Status geändert: $OldStatus &rarr; $NewStatus\r\n";
+        if ($NewStatusID != $_SESSION['status']) {
             
+            //Statusnamen per SQL abfragen
+            $StatusConnection = new db(); // Erstelle ein neues Object, Klasse db()
+            
+            //Namen des NeuenStatus per SQL abfragen
+            $GetNewStatusName = $StatusConnection->getOne("SELECT status from status where ID = $NewStatusID");
+            $NewStatusName = $GetNewStatusName['status'];
+            
+            //Namen des AltenStatus per SQL abfragen
+            $GetOldStatusName = $StatusConnection->getOne("SELECT status from status where ID = $OldStatusID");
+            $OldStatusName = $GetOldStatusName['status'];
+            
+            //Statusvariable schreiben
+            $statustext .= "Status geändert: $OldStatusName &rarr; $NewStatusName\r\n";
+                
+          
             //Status der Korrektur ändern
             $UpdateKorrektur = new db(); // Erstelle ein neues Object, Klasse db()
-            $update = $UpdateKorrektur->execute("UPDATE korrektur set statusID = $NewStatus where ID = $korrekturid"); 
+            $update = $UpdateKorrektur->execute("UPDATE korrektur set statusID = $NewStatusID where ID = $korrekturid"); 
         }
         
         $statustext .= "Text: ".$reason;
