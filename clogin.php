@@ -2,7 +2,9 @@
 
 if(isset($_GET['login'])) {
     
+    if(!isset($_SESSION)){
     session_start();
+}
     
     $email = $_POST['E-Mail'];
     $passwort = $_POST['password'];

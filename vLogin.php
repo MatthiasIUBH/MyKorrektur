@@ -35,8 +35,8 @@
 
         <!-- Navigation -->
         <?php
-        include 'vNav.php';
-        include 'clogin.php';
+        require_once 'vNav.php';
+        require_once 'clogin.php';
         ?>
 
         <!-- Page Content -->

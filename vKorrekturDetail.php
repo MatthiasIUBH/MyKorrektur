@@ -35,9 +35,9 @@
 
         <!-- Navigation -->
         <?php
-        include 'vNav.php';
-        include 'cKorrekturSessionhandler.php';
-        include 'cKorrekturDetail.php';
+        require_once 'vNav.php';
+        require_once 'cKorrekturSessionhandler.php';
+        require_once 'cKorrekturDetail.php';
 
 
         ?>

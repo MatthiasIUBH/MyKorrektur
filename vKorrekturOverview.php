@@ -35,8 +35,8 @@
 
         <!-- Navigation -->
         <?php
-        include 'vNav.php';
-        include 'cKorrekturSessionhandler.php';
+        require_once 'vNav.php';
+        require_once 'cKorrekturSessionhandler.php';
         ?>
 
         <!-- Page Content -->
@@ -44,7 +44,7 @@
   <h2>Korrekturübersicht</h2>
           
   <?php
-    include 'CKorrekturOverview.php';
+    require_once 'cKorrekturOverview.php';
   ?>
   
 

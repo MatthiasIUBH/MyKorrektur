@@ -1,5 +1,9 @@
 <?php
-        session_start();
+
+var_dump($_SESSION);
+        if(!isset($_SESSION)){
+            session_start();
+        }
         if(!isset($_SESSION['userid'])) {
             die('Bitte zuerst <a href="vLogin.php">einloggen</a>');
         }
@@ -36,7 +40,7 @@
 
         //Wenn Logout Button geklickt wurde --> Sessionvariablen NULLEN, Session zerstören, Redirect zum Login
         if(isset($_GET['logout'])) {
-            $_SESSION = array();
+            session_unset(); 
             session_destroy();
             header("location: vLogin.php");
             exit;
