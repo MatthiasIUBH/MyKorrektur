@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 02. Mai 2017 um 22:20
+-- Erstellungszeit: 13. Mai 2017 um 23:39
 -- Server-Version: 10.1.19-MariaDB
--- PHP-Version: 5.6.28
+-- PHP-Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -38,7 +38,22 @@ CREATE TABLE `bearbeitung` (
 --
 
 INSERT INTO `bearbeitung` (`ID`, `date`, `text`, `korrekturID`) VALUES
-(59, '2017-05-02 22:16:00', 'Status geändert: 1 &rarr; 3\r\nText: wird nicht bearbeitet!', 34);
+(59, '2017-05-02 22:16:00', 'Status geändert: 1 &rarr; 3\r\nText: wird nicht bearbeitet!', 34),
+(60, '2017-05-04 19:42:02', 'Status geändert: 1 &rarr; 6\r\nText: Das ist Info 1', 36),
+(61, '2017-05-04 19:42:11', 'Text: Das ist Info 2', 36),
+(62, '2017-05-04 19:42:22', 'Text: Das ist info 3', 36),
+(63, '2017-05-04 19:42:34', 'Status geändert: 6 &rarr; 5\r\nText: Bearbeitung erledigt!', 36),
+(64, '2017-05-04 20:09:45', 'Status geändert: 1 &rarr; 6\r\nText: Zwischeninfo1', 37),
+(65, '2017-05-04 20:10:25', 'Text: Zwischeninfo2', 37),
+(66, '2017-05-04 20:10:57', 'Status geändert: 6 &rarr; 3\r\nText: abgelehnt', 37),
+(67, '2017-05-04 20:12:41', 'Status geändert: 1 &rarr; 4\r\nText: erwerwer', 35),
+(68, '2017-05-04 21:40:57', 'Status geändert: Wartend &rarr; Zwischeninfo\r\nText: fsfsdfsdf', 35),
+(69, '2017-05-04 22:39:21', 'Status geändert: Zwischeninfo &rarr; in Arbeit\r\nText: sdsdasd', 35),
+(70, '2017-05-04 22:48:06', 'Status geändert: in Arbeit &rarr; Wartend\r\nText: sdasdad', 35),
+(71, '2017-05-13 23:33:23', 'Status geändert: Unbearbeitet &rarr; in Arbeit\r\nText: wir schauen uns das an!', 39),
+(72, '2017-05-13 23:33:35', 'Status geändert: Wartend &rarr; Zwischeninfo\r\nText: ist in arbeit!', 35),
+(73, '2017-05-13 23:33:45', 'Status geändert: Zwischeninfo &rarr; Geschlossen\r\nText: erledigt', 35),
+(74, '2017-05-13 23:36:11', 'Status geändert: Unbearbeitet &rarr; Abgelehnt\r\nText: vorschlag abgelehnt!', 40);
 
 -- --------------------------------------------------------
 
@@ -63,7 +78,14 @@ CREATE TABLE `korrektur` (
 
 INSERT INTO `korrektur` (`ID`, `moduleID`, `typeID`, `description`, `materialID`, `userStudentID`, `statusID`, `userDozentID`) VALUES
 (34, '84', '1', 'geht nicht! Daten fehlen!', '4', 1, 3, 4),
-(35, '15', '3', 'Prüfung bitte ausfallen lassen!', '5', 1, 1, 4);
+(35, '15', '3', 'Prüfung bitte ausfallen lassen!', '5', 1, 5, 4),
+(36, '12', '1', 'Auf Seite 32 ist ein Fehler der nicht auf den ersten Blick ersichtlich ist. Es geht darum das X ungleich Y ist. Aber das ist falsch, es müsste eigentlich Y gleich Z heißen. Bitte korrigieren!', '2', 1, 5, 4),
+(37, '20', '1', 'Das ist der test von heute', '1', 1, 3, 4),
+(38, '12', '2', 'Das geht halt nicht', '5', 1, 1, 4),
+(39, '13', '2', 'sdasdasd', '3', 1, 2, 4),
+(40, '13', '2', 'sfsdfsdfsdf', '3', 1, 3, 4),
+(41, '14', '2', 'asdadasdasd', '4', 1, 1, 4),
+(42, '11', '3', 'sdfsfsdf', '4', 1, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -217,6 +239,29 @@ INSERT INTO `status` (`ID`, `status`, `final`, `selectable`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `testtabelle`
+--
+
+CREATE TABLE `testtabelle` (
+  `ID` int(11) NOT NULL,
+  `vorname` text NOT NULL,
+  `nachname` text NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `rolle` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `testtabelle`
+--
+
+INSERT INTO `testtabelle` (`ID`, `vorname`, `nachname`, `password`, `email`, `rolle`) VALUES
+(1, 'matthias', 'nachname1', 'pass1', 'matthias@iubh.de', 'dozent'),
+(2, 'Lukas', 'nachname2', 'pass2', 'lukas@iubh.de', 'student');
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `type`
 --
 
@@ -255,10 +300,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `vorname`, `nachname`, `password`, `email`, `userrolleID`) VALUES
-(1, 'Matthias', 'Will', 'Test1234!', 'Matthias.Will@iubh-fernstudium.de', 2),
+(1, 'Matthias', 'Will', 'Test1234!', 'Matthias.Will@gmail.com', 2),
 (2, 'Lukas', 'Bochmann', 'Test1234!', 'Lukas.Bochmann@iubh-fernstudium.de', 2),
 (3, 'Linda', 'Braun', 'Test1234!', 'Linda.Braun@iubh-fernstudium.de', 2),
-(4, 'Studierendensekretariat', '', 'iubh', 'studierendensekretariat@iubh.de', 1),
+(4, 'Studierendensekretariat', '', 'iubh', 'matthias.will@iubh-fernstudium.de', 1),
 (5, 'Michael', 'Koczulla', 'Test1234!', 'Koczulla.Michael@iubh-fernstudium.de', 2);
 
 -- --------------------------------------------------------
@@ -315,6 +360,12 @@ ALTER TABLE `status`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indizes für die Tabelle `testtabelle`
+--
+ALTER TABLE `testtabelle`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indizes für die Tabelle `type`
 --
 ALTER TABLE `type`
@@ -340,12 +391,12 @@ ALTER TABLE `userrolle`
 -- AUTO_INCREMENT für Tabelle `bearbeitung`
 --
 ALTER TABLE `bearbeitung`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT für Tabelle `korrektur`
 --
 ALTER TABLE `korrektur`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT für Tabelle `material`
 --
