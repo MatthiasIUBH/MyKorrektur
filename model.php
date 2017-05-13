@@ -12,8 +12,7 @@
     		$this->conn = false;
     		$this->host = 'localhost'; //hostname
     		$this->user = 'root'; //username
-    		//$this->password = '7PeNeX4k7+'; //password
-                $this->password = ''; //password
+    		$this->password = '7PeNeX4k7+'; //password
     		$this->baseName = 'mykorrektur'; //name of your database
     		$this->port = '3306';
     		$this->debug = true;
