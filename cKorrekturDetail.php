@@ -1,5 +1,7 @@
 <?php
     require_once('model.php'); // Model-Klasse für DB Operationen aufrufen
+    require_once('simplemail/class.simple_mail.php'); // Model-Klasse für DB Operationen aufrufen
+
     
     //Wenn per GET Parameter eine KorrekturID übermittelt wurde
     //DANN: Setze Sessionvariablen + Neu Aufrufen des Scripts
@@ -51,6 +53,18 @@
         //Daten in DB schreiben
         $insert = $BearbeitungSubmit->execute("INSERT INTO bearbeitung  (text, korrekturID)
                                                   VALUES('$statustext', '$korrekturid')");
+        
+        $StudentMail = $BearbeitungSubmit->getOne("SELECT USR.email From korrektur KOR inner join user USR ON USR.ID = KOR.userStudentID where KOR.ID = $korrekturid");
+        
+        //Email senden an zuständigen Dozenten
+        $mailer = new SimpleMail();
+            $mailer ->setTo($StudentMail['email'], $StudentMail['email'])
+                    ->setFrom('info@mykorrektur.de', 'info@mykorrektur.de')
+                    ->setSubject("Update Korrektur $korrekturid")
+                    ->setMessage(nl2br($statustext))
+                    ->setHtml()
+                    ->setWrap(100)
+                    ->send();
         
         unset($_SESSION['korrekturid']);
         unset($_SESSION['status']);
