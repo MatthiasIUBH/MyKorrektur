@@ -44,9 +44,12 @@
 
         <!-- Page Content -->
         <div class="container">
-            <h2 class="text-center">Bearbeitung Korrektur <?php $_SESSION['korrekturid'] ?></h2>         
+            <h2 class="text-center">Bearbeitung Korrektur <?php echo $_SESSION['korrekturid'] ?></h2>         
             
-            <?php             
+            <?php    
+            //Wenn Korrektur in einem Finalen Status
+            //DANN: zeige nur die Historie
+            //Ansonsten: Zeige Bearbeitungsfelder
              if($_SESSION['status'] == 5){
 
              }
