@@ -44,22 +44,21 @@
 
         <!-- Page Content -->
         <div class="container">
-            <h2 class="text-center">Korrekturbearbeitung</h2>         
-            <table class="table table-bordered">
-                <tbody>
-                    <!-- statischer Beispielinhalt -->       
-                </tbody>
-            </table>
+            <h2 class="text-center">Bearbeitung Korrektur <?php $_SESSION['korrekturid'] ?></h2>         
+            
+            <?php             
+             if($_SESSION['status'] == 5){
 
-            <form class="form-horizontal">
+             }
+             else {
+                 echo '           <form class="form-horizontal">
                 <fieldset>
                    
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="status">Status</label>
                         <div class="col-md-4">
                             <select id="status" name="status" class="form-control" required="">
-                                <option value="" disabled selected>Bitte auswählen</option>
-                                <?php
+                                <option value="" disabled selected>Bitte auswählen</option>';
                                     require_once('model.php'); // Model-Klasse für DB Operationen aufrufen
                                     $GetStatus = new db(); // Erstelle ein neues Object, Klasse db()
                                     $AllStatus = $GetStatus->GetAll("SELECT * FROM status where selectable = 1");
@@ -68,8 +67,7 @@
                                         echo '<option value="'.$value['ID'].'">'.$value['status'].'</option>';
 
                                     }
-                                ?>
-                            </select>
+                echo'            </select>
                         </div>
                     </div>
 
@@ -89,7 +87,12 @@
                             <button id="save" name="save" class="btn btn-primary">Speichern</button>
                     </div>
                 </fieldset>
-            </form>
+            </form>';
+             }
+            
+            
+            ?>
+ 
 
             <?php tabelle(); ?>
 
