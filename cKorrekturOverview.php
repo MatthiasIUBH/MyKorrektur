@@ -52,7 +52,7 @@ if (count($korrekturen) > 0) {
                         //Wenn der Status Final ist: keine Anzeige eines Buttons
                         //Wenn der Status NICHT Final ist: Anzeuge Button zur Detailansicht!
                         if($value['final'] == 1) {
-                            echo '';
+                            echo '<a href="vKorrekturDetail.php?korrekturid=' . $value['ID'] . '&statusid=' . $value['statusid'] . '" target="_self"">Ansehen</a>';
                         }
                         else {
                             echo '<a href="vKorrekturDetail.php?korrekturid=' . $value['ID'] . '&statusid=' . $value['statusid'] . '" target="_self"">Bearbeiten</a>';
