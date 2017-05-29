@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_GET['submit']) && $_SESSION['rolle'] == 'Student') {
+if(isset($_GET['submit']) && ($_SESSION['rolle'] == 'Student' || $_SESSION['rolle'] == 'Dozent')) {
 
         require_once('model.php'); // Model-Klasse für DB Operationen aufrufen
         require_once('simplemail/class.simple_mail.php'); // Model-Klasse für DB Operationen aufrufen
