@@ -10,18 +10,18 @@ if(isset($_GET['submit']) && ($_SESSION['rolle'] == 'Student' || $_SESSION['roll
         
         //Variablen belegen
         $material = $_GET['material'];
-        $module = $_GET['module'];
+        $moduleid = $_GET['module'];
         $type = $_GET['type'];
         $description = $_GET['description'];
         $email = $_SESSION['email'];
         $userid = $_SESSION['userid'];
         
         //per SQL rausfinden welcher Dozent für das jeweilige Modul zuständig ist + seine Mailadresse
-        $dozent = $GetDozentId->getOne("Select MO.userID, USR.email from module MO Inner join user USR on USR.ID = MO.userID where MO.ID = $module");
+        $dozent = $GetDozentId->getOne("Select MO.userID, USR.email from module MO Inner join user USR on USR.ID = MO.userID where MO.ID = $moduleid");
 
         //Daten in DB schreiben
         $insert = $KorrekturSubmit->execute("INSERT INTO korrektur  (userStudentID, moduleID, typeID, description, materialID, userDozentID, statusID)
-                                                  VALUES('$userid', '$module', '$type', '$description', '$material','".$dozent['userID']."',1);");
+                                                  VALUES('$userid', '$moduleid', '$type', '$description', '$material','".$dozent['userID']."',1);");
         
         //Email senden an zuständigen Dozenten
         $mailer = new SimpleMail();
