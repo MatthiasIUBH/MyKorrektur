@@ -17,7 +17,8 @@ $korrekturen = $GetKorrekturen->GetAll(""
         . "inner join type TYP on TYP.ID = KOR.typeID "
         . "inner join user USR on USR.ID = KOR.userStudentID "
         . "inner join status STA on STA.ID = KOR.statusID "
-        . "where KOR.userDozentID = " . $_SESSION['userid'] . "");
+        . "where KOR.userDozentID = " . $_SESSION['userid'] . " "
+        . "order by KOR.ID DESC");
 
 
 //Wenn der Dozent Korrekturen hat, diese anzeigen
