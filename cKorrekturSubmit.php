@@ -27,7 +27,7 @@ if(isset($_GET['submit']) && ($_SESSION['rolle'] == 'Student' || $_SESSION['roll
         $mailer = new SimpleMail();
             $mailer ->setTo($dozent['email'], $dozent['email'])
                     ->setFrom('info@mykorrektur.de', 'info@mykorrektur.de')
-                    ->setSubject('Neue Korrektur zur Bearbeitung!')
+                    ->setSubject("Neue Korrektur zur Bearbeitung!")
                     ->setMessage("Es ist eine neue Korrektur vorhanden und muss bearbeitet werden!")
                     ->setHtml()
                     ->setWrap(100)
